@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Sln">
+  <PropertyGroup>
+    <Name>ResumeBuilder</Name>
+    <Solutions>
+      <Solution Include="src\Api\Api.csproj" />
+      <Solution Include="src\Application\Application.csproj" />
+      <Solution Include="src\Domain\Domain.csproj" />
+      <Solution Include="src\Infrastructure\Infrastructure.csproj" />
+    </Solutions>
+  </PropertyGroup>
+</Project>
+
+<!-- 
+Windows: Add projects using Visual Studio
+Or use CLI:
+
+dotnet new sln -n ResumeBuilder
+dotnet sln add src/Api/Api.csproj
+dotnet sln add src/Application/Application.csproj
+dotnet sln add src/Domain/Domain.csproj
+dotnet sln add src/Infrastructure/Infrastructure.csproj
+
+Then build entire solution:
+dotnet build
+-->

@@ -1,0 +1,75 @@
+<div class="preview-container">
+  <div class="header-section">
+    <h1>Preview & Export</h1>
+    <p class="subtitle">View your resume and download as PDF or DOCX</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Controls Sidebar -->
+    <div class="controls-sidebar">
+      <div class="section">
+        <h3>Template</h3>
+        <div class="template-selector">
+          <button
+            *ngFor="let template of templates"
+            type="button"
+            class="template-btn"
+            [class.active]="selectedTemplate === template.id"
+            (click)="selectTemplate(template.id)"
+          >
+            <span class="label">{{ template.label }}</span>
+            <span class="description">{{ template.description }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Export</h3>
+        <button
+          type="button"
+          class="btn btn-primary full-width"
+          [disabled]="isExporting || !currentResume"
+          (click)="exportPdf()"
+        >
+          <span *ngIf="isExporting">Exporting...</span>
+          <span *ngIf="!isExporting">📥 Download PDF</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary full-width"
+          [disabled]="isExporting || !currentResume"
+          (click)="exportDocx()"
+          style="margin-top: 10px;"
+        >
+          <span *ngIf="isExporting">Exporting...</span>
+          <span *ngIf="!isExporting">📥 Download DOCX</span>
+        </button>
+      </div>
+
+      <div class="section">
+        <h3>Actions</h3>
+        <button type="button" class="btn btn-outline-secondary full-width" (click)="refreshPreview()">
+          🔄 Refresh Preview
+        </button>
+      </div>
+    </div>
+
+    <!-- Preview Pane -->
+    <div class="preview-pane">
+      <div *ngIf="isLoadingPreview || !previewHtml" class="loading-indicator">
+        <div class="spinner"></div>
+        <p>Generating preview...</p>
+      </div>
+
+      <div *ngIf="!isLoadingPreview && previewHtml" class="preview-content" [innerHTML]="previewHtml"></div>
+    </div>
+  </div>
+</div>

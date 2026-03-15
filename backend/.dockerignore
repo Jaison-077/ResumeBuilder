@@ -1,0 +1,34 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.iml
+
+# Git
+.git/
+.gitignore
+
+# Database
+*.db
+*.sqlite
+
+# Environment
+appsettings.Development.json
+.env
+.env.local
+
+# Node modules (if any)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NuGet
+packages/
+.nuget/

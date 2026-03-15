@@ -1,0 +1,101 @@
+<div class="ats-optimizer-container">
+  <div class="header-section">
+    <h1>ATS Optimizer</h1>
+    <p class="subtitle">Optimize your resume for Applicant Tracking Systems by comparing against a job description</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <!-- Input Form -->
+  <div class="input-section">
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="jobDescription">Paste Job Description *</label>
+        <textarea
+          id="jobDescription"
+          formControlName="jobDescription"
+          class="form-control"
+          rows="10"
+          placeholder="Paste the complete job description here. The AI will extract key skills, tools, and requirements to compare with your resume."
+        ></textarea>
+        <small class="form-hint">Minimum 50 characters required</small>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="analyzeForATS()"
+        [disabled]="isLoading || form.invalid"
+      >
+        <span *ngIf="isLoading">Analyzing...</span>
+        <span *ngIf="!isLoading">Analyze Resume Match</span>
+      </button>
+    </form>
+  </div>
+
+  <!-- Results Section -->
+  <div *ngIf="analysisResult" class="results-section">
+    <!-- Match Score -->
+    <div class="match-score-card" [class]="'status-' + matchScoreStatus">
+      <div class="score-display">
+        <div class="score-number">{{ analysisResult.matchScore }}%</div>
+        <div class="score-label">ATS Match Score</div>
+      </div>
+      <div class="score-status" [class]="'status-' + matchScoreStatus">
+        {{ matchScoreStatus | uppercase }}
+      </div>
+    </div>
+
+    <!-- Matched Keywords -->
+    <div *ngIf="analysisResult.matchedKeywords.length > 0" class="section">
+      <h3>Matched Keywords</h3>
+      <div class="keywords-list">
+        <span *ngFor="let keyword of analysisResult.matchedKeywords" class="keyword-badge matched">
+          ✓ {{ keyword }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Missing Keywords -->
+    <div *ngIf="analysisResult.missingKeywords.length > 0" class="section">
+      <h3>Missing Keywords</h3>
+      <p class="section-hint">These keywords appear in the job description but not in your resume. Consider adding them if applicable.</p>
+      <div class="keywords-list">
+        <span *ngFor="let keyword of analysisResult.missingKeywords" class="keyword-badge missing">
+          ✗ {{ keyword }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Suggestions -->
+    <div *ngIf="analysisResult.suggestions.length > 0" class="section">
+      <h3>Suggestions</h3>
+      <ul class="suggestions-list">
+        <li *ngFor="let suggestion of analysisResult.suggestions">
+          {{ suggestion }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button
+        type="button"
+        *ngIf="analysisResult.optimizedResume"
+        class="btn btn-success"
+        (click)="useOptimizedResume()"
+      >
+        Apply Optimized Resume
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="form.reset(); analysisResult = null">
+        Analyze Another Job
+      </button>
+    </div>
+  </div>
+</div>

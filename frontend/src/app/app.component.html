@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <h1>{{ title }}</h1>
+    </div>
+    <ul class="navbar-nav">
+      <li *ngFor="let item of navigationItems" class="nav-item">
+        <a [routerLink]="item.path" routerLinkActive="active" class="nav-link">
+          <span class="icon">{{ item.icon }}</span>
+          <span class="label">{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2024 AI Resume Generator. Built with Angular & ASP.NET Core.</p>
+</footer>
