@@ -1,0 +1,11 @@
+{
+  "buildCommand": "cd frontend && npm install --legacy-peer-deps && npm run build:prod",
+  "outputDirectory": "frontend/dist/resume-builder",
+  "framework": "angular",
+  "rewrites": [
+    {
+      "source": "/((?!api|.*\\.).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

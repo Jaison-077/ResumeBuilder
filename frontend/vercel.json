@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/resume-builder"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "destination": "/index.html",
+      "status": 200
+    }
+  ],
+  "env": {
+    "ANGULAR_ENV": "production"
+  }
+}
