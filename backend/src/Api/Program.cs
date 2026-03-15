@@ -4,7 +4,7 @@ using ResumeBuilder.Application.Services;
 using ResumeBuilder.Infrastructure.DocumentGeneration;
 using ResumeBuilder.Infrastructure.ExternalServices;
 
-var builder = WebApplicationBuilder.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 // ============ SERVICE REGISTRATION ============
 

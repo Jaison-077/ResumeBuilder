@@ -1,0 +1,41 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ujoi5CVDo2k=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\FS133266\\OneDrive - First Solar\\Documents\\Code\\ResumeBuilder\\backend\\src\\Infrastructure\\Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\FS133266\\.nuget\\packages\\azure.ai.openai\\2.0.0\\azure.ai.openai.2.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\azure.core\\1.43.0\\azure.core.1.43.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\azure.storage.blobs\\12.19.0\\azure.storage.blobs.12.19.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\azure.storage.common\\12.18.0\\azure.storage.common.12.18.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\documentformat.openxml\\2.20.0\\documentformat.openxml.2.20.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\openai\\2.0.0\\openai.2.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.clientmodel\\1.1.0\\system.clientmodel.1.1.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.io.hashing\\6.0.0\\system.io.hashing.6.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.io.packaging\\4.7.0\\system.io.packaging.4.7.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.text.json\\6.0.9\\system.text.json.6.0.9.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "message": "ResumeBuilder.Infrastructure depends on Azure.AI.OpenAI (>= 1.0.0) but Azure.AI.OpenAI 1.0.0 was not found. Azure.AI.OpenAI 2.0.0 was resolved instead.",
+      "projectPath": "C:\\Users\\FS133266\\OneDrive - First Solar\\Documents\\Code\\ResumeBuilder\\backend\\src\\Infrastructure\\Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\FS133266\\OneDrive - First Solar\\Documents\\Code\\ResumeBuilder\\backend\\src\\Infrastructure\\Infrastructure.csproj",
+      "libraryId": "Azure.AI.OpenAI",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "wSElTt3Yd7o=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\FS133266\\OneDrive - First Solar\\Documents\\Code\\ResumeBuilder\\backend\\src\\Application\\Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\FS133266\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\FS133266\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
