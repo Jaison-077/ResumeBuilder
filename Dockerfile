@@ -1,28 +1,16 @@
 # Multi-stage build for .NET 8
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
-WORKDIR /src
+WORKDIR /app
 
-# Copy solution file
-COPY backend/ResumeBuilder.sln .
-
-# Copy project files
-COPY backend/src/Domain/Domain.csproj ./src/Domain/
-COPY backend/src/Application/Application.csproj ./src/Application/
-COPY backend/src/Infrastructure/Infrastructure.csproj ./src/Infrastructure/
-COPY backend/src/Api/Api.csproj ./src/Api/
-
-# Copy source code
-COPY backend/src/Domain/ ./src/Domain/
-COPY backend/src/Application/ ./src/Application/
-COPY backend/src/Infrastructure/ ./src/Infrastructure/
-COPY backend/src/Api/ ./src/Api/
+# Copy backend directory entirely
+COPY backend/ ./
 
 # Restore dependencies
-RUN dotnet restore
+RUN dotnet restore ResumeBuilder.sln
 
 # Build and publish
-RUN dotnet publish -c Release -o /app src/Api/Api.csproj
+RUN dotnet publish -c Release -o /publish src/Api/Api.csproj
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
@@ -30,7 +18,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
 # Copy published artifacts
-COPY --from=build /app .
+COPY --from=build /publish .
 
 # Port configuration
 EXPOSE 8080
