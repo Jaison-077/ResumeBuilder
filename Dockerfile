@@ -3,15 +3,23 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 WORKDIR /src
 
-# Copy all project files
-COPY backend/src/Domain/ ./Domain/
-COPY backend/src/Application/ ./Application/
-COPY backend/src/Infrastructure/ ./Infrastructure/
-COPY backend/src/Api/ ./Api/
-COPY backend/ResumeBuilder.sln ./
+# Copy solution file
+COPY backend/ResumeBuilder.sln .
+
+# Copy project files
+COPY backend/src/Domain/Domain.csproj ./src/Domain/
+COPY backend/src/Application/Application.csproj ./src/Application/
+COPY backend/src/Infrastructure/Infrastructure.csproj ./src/Infrastructure/
+COPY backend/src/Api/Api.csproj ./src/Api/
+
+# Copy source code
+COPY backend/src/Domain/ ./src/Domain/
+COPY backend/src/Application/ ./src/Application/
+COPY backend/src/Infrastructure/ ./src/Infrastructure/
+COPY backend/src/Api/ ./src/Api/
 
 # Restore dependencies
-RUN dotnet restore ResumeBuilder.sln
+RUN dotnet restore
 
 # Build and publish
 RUN dotnet publish -c Release -o /app src/Api/Api.csproj
