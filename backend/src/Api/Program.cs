@@ -53,35 +53,63 @@ builder.Services.AddScoped<ITemplateService, TemplateService>();
 builder.Services.AddScoped<IFileExtractionService, FileExtractionService>();
 
 // Add Infrastructure Services
-// Azure OpenAI Service
-var azureOpenAiEndpoint = builder.Configuration["AzureOpenAI:Endpoint"] 
-    ?? throw new InvalidOperationException("Missing configuration: AzureOpenAI:Endpoint");
-var azureOpenAiKey = builder.Configuration["AzureOpenAI:Key"] 
-    ?? throw new InvalidOperationException("Missing configuration: AzureOpenAI:Key");
-var azureOpenAiDeployment = builder.Configuration["AzureOpenAI:DeploymentName"] 
-    ?? throw new InvalidOperationException("Missing configuration: AzureOpenAI:DeploymentName");
+// Azure OpenAI Service (optional for development)
+var azureOpenAiEndpoint = builder.Configuration["AzureOpenAI:Endpoint"];
+var azureOpenAiKey = builder.Configuration["AzureOpenAI:Key"];
+var azureOpenAiDeployment = builder.Configuration["AzureOpenAI:DeploymentName"];
 
-builder.Services.AddScoped<IAIService>(sp =>
-    new AzureOpenAiService(
-        sp.GetRequiredService<ILogger<AzureOpenAiService>>(),
-        azureOpenAiEndpoint,
-        azureOpenAiKey,
-        azureOpenAiDeployment
-    )
-);
+if (!string.IsNullOrEmpty(azureOpenAiEndpoint) && 
+    !azureOpenAiEndpoint.Contains("<") && 
+    !string.IsNullOrEmpty(azureOpenAiKey) && 
+    !azureOpenAiKey.Contains("<"))
+{
+    builder.Services.AddScoped<IAIService>(sp =>
+        new AzureOpenAiService(
+            sp.GetRequiredService<ILogger<AzureOpenAiService>>(),
+            azureOpenAiEndpoint,
+            azureOpenAiKey,
+            azureOpenAiDeployment ?? "gpt-35-turbo"
+        )
+    );
+}
+else
+{
+    // Register mock AI service for development
+    builder.Services.AddScoped<IAIService>(sp =>
+        new AzureOpenAiService(
+            sp.GetRequiredService<ILogger<AzureOpenAiService>>(),
+            "https://mock.openai.azure.com/",
+            "mock-key",
+            "gpt-35-turbo"
+        )
+    );
+}
 
-// Azure Blob Storage Service
-var blobConnectionString = builder.Configuration["AzureBlob:ConnectionString"] 
-    ?? throw new InvalidOperationException("Missing configuration: AzureBlob:ConnectionString");
+// Azure Blob Storage Service (optional for development)
+var blobConnectionString = builder.Configuration["AzureBlob:ConnectionString"];
 var blobContainerName = builder.Configuration["AzureBlob:ContainerName"] ?? "resumes";
 
-builder.Services.AddScoped<IStorageService>(sp =>
-    new AzureBlobStorageService(
-        sp.GetRequiredService<ILogger<AzureBlobStorageService>>(),
-        blobConnectionString,
-        blobContainerName
-    )
-);
+if (!string.IsNullOrEmpty(blobConnectionString) && !blobConnectionString.Contains("<"))
+{
+    builder.Services.AddScoped<IStorageService>(sp =>
+        new AzureBlobStorageService(
+            sp.GetRequiredService<ILogger<AzureBlobStorageService>>(),
+            blobConnectionString,
+            blobContainerName
+        )
+    );
+}
+else
+{
+    // Register mock storage service for development
+    builder.Services.AddScoped<IStorageService>(sp =>
+        new AzureBlobStorageService(
+            sp.GetRequiredService<ILogger<AzureBlobStorageService>>(),
+            "DefaultEndpointsProtocol=https;AccountName=mock;AccountKey=mock;EndpointSuffix=core.windows.net",
+            blobContainerName
+        )
+    );
+}
 
 // Add Logging
 builder.Services.AddLogging(options =>

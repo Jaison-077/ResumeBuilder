@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ResumeBuilder.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+228cd32b24bdfd120b6533185f39971191a3d7b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d578eafe8bd423172f1beb3a06b0c265c2e18542")]
 [assembly: System.Reflection.AssemblyProductAttribute("ResumeBuilder.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ResumeBuilder.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
